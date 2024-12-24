@@ -124,6 +124,25 @@ class DataTypesTest {
     }
 
     @Test
+    void bigDecimalParseValueTest_CURRENCY_INTEGER() throws FrameworkException {
+        assertEquals(BigDecimal.valueOf(1000), DataTypes.CURRENCY_INTEGER.parseValue("1,000.00 $", Locale.US));
+        assertEquals(BigDecimal.valueOf(1000), DataTypes.CURRENCY_INTEGER.parseValue("1.000,00 €", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(1000), DataTypes.CURRENCY_INTEGER.parseValue("1.000", Locale.ITALY));
+        assertEquals(BigDecimalUtil.toBigDecimal(1000.987), DataTypes.CURRENCY_INTEGER.parseValue("1,000.987 $", Locale.US));
+        assertEquals(BigDecimalUtil.toBigDecimal(1000.987), DataTypes.CURRENCY_INTEGER.parseValue("1.000,987 €", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(10), DataTypes.CURRENCY_INTEGER.parseValue("10,00 €", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(0), DataTypes.CURRENCY_INTEGER.parseValue("0,00 €", Locale.ITALY));
+
+        assertEquals(BigDecimal.valueOf(1000), DataTypes.CURRENCY_INTEGER.parseValue("1000.00", Locale.US));
+        assertEquals(BigDecimal.valueOf(1000), DataTypes.CURRENCY_INTEGER.parseValue("1000,00", Locale.ITALY));
+        assertEquals(BigDecimalUtil.toBigDecimal(1000.987), DataTypes.CURRENCY_INTEGER.parseValue("1000.987", Locale.US));
+        assertEquals(BigDecimalUtil.toBigDecimal(1000.987), DataTypes.CURRENCY_INTEGER.parseValue("1000,987", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(1234), DataTypes.CURRENCY_INTEGER.parseValue("12.34", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(12.34), DataTypes.CURRENCY_INTEGER.parseValue("12,34", Locale.ITALY));
+        assertEquals(BigDecimal.valueOf(0), DataTypes.CURRENCY_INTEGER.parseValue("0.00", Locale.ITALY));
+    }
+
+    @Test
     void bigDecimalParseValue_PERC() throws FrameworkException {
         assertEquals(BigDecimal.valueOf(1234), DataTypes.PERC.parseValue("12.34", Locale.ITALY));
         assertEquals(BigDecimal.valueOf(12.34), DataTypes.PERC.parseValue("12,34", Locale.ITALY));
@@ -151,11 +170,6 @@ class DataTypesTest {
         assertEquals("10", DataTypes.INTEGER.formatText(BigDecimal.valueOf(10), Locale.ITALY));
         assertEquals("0", DataTypes.INTEGER.formatText(BigDecimal.valueOf(0), Locale.ITALY));
 
-        assertEquals("1,000.00 $", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(1000), Locale.US));
-        assertEquals("1.000,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(1000), Locale.ITALY));
-        assertEquals("10,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(10), Locale.ITALY));
-        assertEquals("0,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(0), Locale.ITALY));
-
         assertEquals("10,00 %", DataTypes.PERC.formatText(BigDecimal.valueOf(10), Locale.ITALY));
         assertEquals("0,00 %", DataTypes.PERC.formatText(BigDecimal.valueOf(0), Locale.ITALY));
 
@@ -168,6 +182,19 @@ class DataTypesTest {
     }
 
 
+    void currencyFormatTextTest() throws FrameworkException {
+        assertEquals("1,000.00 $", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(1000), Locale.US));
+        assertEquals("1.000,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(1000), Locale.ITALY));
+        assertEquals("10,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(10), Locale.ITALY));
+        assertEquals("0,00 €", DataTypes.CURRENCY.formatText(BigDecimal.valueOf(0), Locale.ITALY));
+    }
+
+    void currencyIntegerFormatTextTest() throws FrameworkException {
+        assertEquals("1,000 $", DataTypes.CURRENCY_INTEGER.formatText(BigDecimal.valueOf(1000), Locale.US));
+        assertEquals("1.000 €", DataTypes.CURRENCY_INTEGER.formatText(BigDecimal.valueOf(1000), Locale.ITALY));
+        assertEquals("10 €", DataTypes.CURRENCY_INTEGER.formatText(BigDecimal.valueOf(10), Locale.ITALY));
+        assertEquals("0 €", DataTypes.CURRENCY_INTEGER.formatText(BigDecimal.valueOf(0), Locale.ITALY));
+    }
 
     @Test
     void stringParseTest() throws FrameworkException {

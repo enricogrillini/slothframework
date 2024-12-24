@@ -22,6 +22,7 @@ import lombok.Data;
 public class NumerFormat {
 
     public static final NumerFormat CURRENCY_FORMAT = new NumerFormat(2, ",", ".", " €");
+    public static final NumerFormat CURRENCY_INTEGER_FORMAT = new NumerFormat(0, ",", ".", " €");
     public static final NumerFormat DECIMAL_FORMAT = new NumerFormat(2, ",", ".", "");
     public static final NumerFormat INTEGER_FORMAT = new NumerFormat(0, ",", ".", "");
     public static final NumerFormat PERC_FORMAT = new NumerFormat(2, ",", ".", " %");

@@ -13,7 +13,7 @@ mvn versions:display-dependency-updates
 
 # Deploy 
 git checkout master
-gti pull
+git pull
 mvn deploy
 git checkout develop
 ```

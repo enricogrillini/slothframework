@@ -44,6 +44,7 @@ public enum DataTypes {
     DECIMAL(HtmlInput.TYPE_DECIMAL, Localization.PROP_DECIMAL, Localization.ERR_PROP_DECIMAL),
     INTEGER(HtmlInput.TYPE_INTEGER, Localization.PROP_INTEGER, Localization.ERR_PROP_INTEGER),
     CURRENCY(HtmlInput.TYPE_CURRENCY, Localization.PROP_CURRENCY, Localization.ERR_PROP_CURRENCY),
+    CURRENCY_INTEGER(HtmlInput.TYPE_CURRENCY_INTEGER, Localization.PROP_CURRENCY_INTEGER, Localization.ERR_PROP_CURRENCY_INTEGER),
     PERC(HtmlInput.TYPE_PERC, Localization.PROP_PERC, Localization.ERR_PROP_PERC),
     NUMBER(HtmlInput.TYPE_NUMBER, Localization.PROP_NUMBER, Localization.ERR_PROP_NUMBER),
 
@@ -141,6 +142,7 @@ public enum DataTypes {
             case DECIMAL:
             case INTEGER:
             case CURRENCY:
+            case CURRENCY_INTEGER:
             case PERC:
             case NUMBER:
                 DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
@@ -246,6 +248,7 @@ public enum DataTypes {
             case DECIMAL:
             case INTEGER:
             case CURRENCY:
+            case CURRENCY_INTEGER:
             case PERC:
             case NUMBER:
                 if (BaseFunction.isNull(value) || value instanceof BigDecimal) {
@@ -285,7 +288,7 @@ public enum DataTypes {
      * @return
      */
     public boolean isNumber() {
-        return (this.equals(DECIMAL) || this.equals(INTEGER) || this.equals(CURRENCY) || this.equals(PERC));
+        return (this.equals(DECIMAL) || this.equals(INTEGER) || this.equals(CURRENCY) || this.equals(CURRENCY_INTEGER) || this.equals(PERC));
     }
 
 
@@ -303,6 +306,8 @@ public enum DataTypes {
                 return NumerFormat.INTEGER_FORMAT;
             case CURRENCY:
                 return NumerFormat.CURRENCY_FORMAT;
+            case CURRENCY_INTEGER:
+                return NumerFormat.CURRENCY_INTEGER_FORMAT;
             case PERC:
                 return NumerFormat.PERC_FORMAT;
 

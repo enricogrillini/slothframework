@@ -77,8 +77,10 @@ public abstract class SimplePage<F extends Form> extends FormPage<F> {
 
                 // Eseguo le operazioni di inizializzazione se la form e' nuova o se la navigazione non è gestita
                 if (isNewForm()) {
+                    onBeforeNavigation();
                     onInit();
                     getWebDesktopDto().incNavigationSequence();
+                    onAfterNavigation();
                 } else {
                     onBeforeNavigation();
                     if (isAutoComplete()) {
@@ -89,7 +91,7 @@ public abstract class SimplePage<F extends Form> extends FormPage<F> {
                         }
                         getWebDesktopDto().incNavigationSequence();
                     }
-
+                    onAfterNavigation();
                 }
 
             } catch (Exception e) {

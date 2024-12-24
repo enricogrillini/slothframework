@@ -32,6 +32,8 @@ public class HtmlInput {
     public static final String TYPE_INTEGER = "number";
     public static final String TYPE_DECIMAL = "text";
     public static final String TYPE_CURRENCY = "text";
+
+    public static final String TYPE_CURRENCY_INTEGER = "text";
     public static final String TYPE_PERC = "text";
 
     // String

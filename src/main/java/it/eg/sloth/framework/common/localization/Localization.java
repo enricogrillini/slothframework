@@ -49,6 +49,7 @@ public class Localization {
     public static final String PROP_INTEGER = "format.integer";
     public static final String PROP_DECIMAL = "format.decimal";
     public static final String PROP_CURRENCY = "format.currency";
+    public static final String PROP_CURRENCY_INTEGER = "format.currencyinteger";
     public static final String PROP_PERC = "format.perc";
 
     // String - Format
@@ -72,6 +73,7 @@ public class Localization {
     public static final String ERR_PROP_INTEGER = "error.integer";
     public static final String ERR_PROP_DECIMAL = "error.decimal";
     public static final String ERR_PROP_CURRENCY = "error.currency";
+    public static final String ERR_PROP_CURRENCY_INTEGER = "error.currencyinteger";
     public static final String ERR_PROP_PERC = "error.perc";
 
     // String - Error

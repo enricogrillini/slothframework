@@ -33,6 +33,7 @@ public class BaseExcelType {//
     public static final BaseExcelType DECIMAL = new BaseExcelType("_-* #,##0.00_-;-* #,##0.00_-;_-* \"-\"??_-;_-@_-");
     public static final BaseExcelType PERC = new BaseExcelType(" 0%");
     public static final BaseExcelType CURRENCY = new BaseExcelType("#,##0.00 €;[Red]-#,##0.00 €");
+    public static final BaseExcelType CURRENCY_INTEGER = new BaseExcelType("#,##0 €;[Red]-#,##0 €");
     public static final BaseExcelType DATE = new BaseExcelType("dd/mm/yyyy");
     public static final BaseExcelType MONTH = new BaseExcelType("mm/yyyy");
     public static final BaseExcelType DATETIME = new BaseExcelType("dd/mm/yyyy hh:mm:ss");
@@ -76,6 +77,7 @@ public class BaseExcelType {//
                 case DECIMAL -> DECIMAL;
                 case PERC -> PERC;
                 case CURRENCY -> CURRENCY;
+                case CURRENCY_INTEGER -> CURRENCY_INTEGER;
                 case STRING, MD, MAIL, PARTITA_IVA, CODICE_FISCALE -> null;
                 default -> null;
             };

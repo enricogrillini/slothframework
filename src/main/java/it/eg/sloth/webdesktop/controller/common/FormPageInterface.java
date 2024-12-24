@@ -14,6 +14,7 @@ import it.eg.sloth.webdesktop.controller.BasePageInterface;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.OutputStream;
 
 /**
@@ -34,7 +35,7 @@ import java.io.OutputStream;
  */
 public interface FormPageInterface<F extends Form> extends BasePageInterface {
 
-     WebRequest getWebRequest();
+    WebRequest getWebRequest();
 
     void setWebRequest(WebRequest webRequest);
 
@@ -65,10 +66,10 @@ public interface FormPageInterface<F extends Form> extends BasePageInterface {
     void execInit() throws Exception;
 
     default void onBeforeNavigation() throws Exception {
-        execBeforeNavigation();
+        // NOP
     }
 
-    default void execBeforeNavigation() throws Exception {
+    default void onAfterNavigation() throws Exception {
         // NOP
     }
 
