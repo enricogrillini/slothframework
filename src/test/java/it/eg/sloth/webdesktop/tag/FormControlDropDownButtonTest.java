@@ -50,7 +50,7 @@ class FormControlDropDownButtonTest extends AbstractTest {
     void dropDownButton() throws FrameworkException {
         assertEqualsStr("dropDownButton.html", FormControlWriter.writeDropDownButton(field));
 
-        assertEqualsStr("dropDownButton.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEqualsStr("dropDownButton.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -65,7 +65,7 @@ class FormControlDropDownButtonTest extends AbstractTest {
     void dropDownButtonHidden() throws FrameworkException {
         field.setHidden(true);
 
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
 }

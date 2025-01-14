@@ -39,10 +39,10 @@ public class LabelControlWriter extends HtmlWriter {
     }
 
     public static String writeLblControl(SimpleField simpleField, Elements<?> parentElement, ViewModality viewModality, String labelWidth, String controlWidth) throws FrameworkException {
-        return writeLblControl(simpleField, parentElement, viewModality, null, labelWidth, controlWidth, labelWidth, controlWidth);
+        return writeLblControl(simpleField, parentElement, viewModality, false, labelWidth, controlWidth, labelWidth, controlWidth);
     }
 
-    public static String writeLblControl(SimpleField simpleField, Elements<?> parentElement, ViewModality viewModality, String controlClass, String labelWidth, String controlWidth, String mLabelWidth, String mControlWidth) throws FrameworkException {
+    public static String writeLblControl(SimpleField simpleField, Elements<?> parentElement, ViewModality viewModality, boolean overflow, String labelWidth, String controlWidth, String mLabelWidth, String mControlWidth) throws FrameworkException {
         StringBuilder result = new StringBuilder();
 
         if (hasLabel(simpleField)) {
@@ -54,7 +54,7 @@ public class LabelControlWriter extends HtmlWriter {
 
         return result
                 .append(GroupWriter.openCell(controlWidth, mControlWidth))
-                .append(FormControlWriter.writeControl(simpleField, parentElement, viewModality, controlClass))
+                .append(FormControlWriter.writeControl(simpleField, parentElement, viewModality, overflow))
                 .append(GroupWriter.closeCell())
                 .toString();
     }

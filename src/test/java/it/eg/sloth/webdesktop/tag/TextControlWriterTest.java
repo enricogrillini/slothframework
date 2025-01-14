@@ -101,10 +101,10 @@ class TextControlWriterTest {
         Hidden<String> field = new Hidden<String>("name", "description", DataTypes.STRING);
         fields.addChild(field);
 
-        assertEquals(TextControlWriter.writeControl(field, fields), FormControlWriter.writeControl(field, fields, ViewModality.EDIT, null));
+        assertEquals(TextControlWriter.writeControl(field, fields), FormControlWriter.writeControl(field, fields, ViewModality.EDIT, false));
 
         field.setValue("testo");
-        assertEquals(TextControlWriter.writeControl(field, fields), FormControlWriter.writeControl(field, fields, ViewModality.EDIT, null));
+        assertEquals(TextControlWriter.writeControl(field, fields), FormControlWriter.writeControl(field, fields, ViewModality.EDIT, false));
     }
 
     @Test

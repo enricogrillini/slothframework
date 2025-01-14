@@ -65,21 +65,21 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(CTRL_INPUT, "name", "text", "testo", "", ATTR_EDIT), FormControlWriter.writeInput(field, null, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "text", "testo", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "text", "testo", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // State
         field.setState(ControlState.DANGER);
         field.setStateMessage("Lorem ipsum");
-        assertEquals(MessageFormat.format(CTRL_INPUT_GROUP, "name", "text", "testo", "", ATTR_EDIT_DANGER), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT_GROUP, "name", "text", "testo", "", ATTR_EDIT_DANGER), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // Link
         field.setBaseLink("/api/");
-        assertEquals(MessageFormat.format(CTRL_INPUT_GROUP, "name", "text", "testo", "", ATTR_EDIT_DANGER), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
-        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK,"testo","Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.VIEW, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT_GROUP, "name", "text", "testo", "", ATTR_EDIT_DANGER), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
+        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.VIEW, false));
 
         // Empty
         field.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     // Input - Date
@@ -96,7 +96,7 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(CTRL_INPUT, "name", "date", "2020-01-01", "", ATTR_EDIT), FormControlWriter.writeInput(field, null, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "date", "2020-01-01", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "date", "2020-01-01", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     // Input - DateTime
@@ -113,7 +113,7 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(CTRL_INPUT, "name", "datetime-local", "2020-01-01T10:11:12", ATTR_STEP, ATTR_EDIT), FormControlWriter.writeInput(field, null, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "datetime-local", "2020-01-01T10:11:12", ATTR_STEP, ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "datetime-local", "2020-01-01T10:11:12", ATTR_STEP, ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     // InputTotalizer - Integer
@@ -129,7 +129,7 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(CTRL_INPUT, "name", "number", "10", "", ATTR_EDIT), FormControlWriter.writeInput(field, null, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "number", "10", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(CTRL_INPUT, "name", "number", "10", "", ATTR_EDIT), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -147,17 +147,17 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(INPUT_VIEW_FULL, "testo"), FormControlWriter.writeText(field, null));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(INPUT_VIEW_FULL, "testo"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(INPUT_VIEW_FULL, "testo"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // State
         field.setState(ControlState.DANGER);
         field.setStateMessage("Lorem ipsum");
-        assertEquals(MessageFormat.format(INPUT_VIEW_STATE, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(INPUT_VIEW_STATE, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // Link
         field.setBaseLink("/api/");
-        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
-        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.VIEW, null));
+        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
+        assertEquals(MessageFormat.format(INPUT_VIEW_STATE_LINK, "testo", "Lorem ipsum"), FormControlWriter.writeControl(field, null, ViewModality.VIEW, false));
     }
 
     @Test
@@ -176,7 +176,7 @@ class FormControlInputWriterTest {
         assertEquals(MessageFormat.format(INPUT_VIEW_FULL, 10), FormControlWriter.writeTextTotalizer(field, null));
 
         // Generico controllo
-        assertEquals(MessageFormat.format(INPUT_VIEW_FULL, 10), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(INPUT_VIEW_FULL, 10), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
 }

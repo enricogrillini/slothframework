@@ -104,7 +104,7 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_AUTOCOMPLETE_EDIT, "Scelta A"), FormControlWriter.writeAutoComplete(autocomplete, fields, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_AUTOCOMPLETE_EDIT, "Scelta A"), FormControlWriter.writeControl(autocomplete, fields, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_AUTOCOMPLETE_EDIT, "Scelta A"), FormControlWriter.writeControl(autocomplete, fields, ViewModality.EDIT, false));
 
         // Link
         autocomplete.setBaseLink("destPage.html?name=");
@@ -112,7 +112,7 @@ class FormControlWriterTest {
 
         // Empty
         autocomplete.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(autocomplete, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(autocomplete, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -127,11 +127,11 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_CHECKBOX_MOD, ""), FormControlWriter.writeCheckBox(checkBox, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_CHECKBOX_MOD, ""), FormControlWriter.writeControl(checkBox, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_CHECKBOX_MOD, ""), FormControlWriter.writeControl(checkBox, null, ViewModality.EDIT, false));
 
         // Empty
         checkBox.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(checkBox, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(checkBox, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -145,7 +145,7 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_TEXT, "Scelta A"), FormControlWriter.writeDecodedText(field, null));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_TEXT, "Scelta A"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_TEXT, "Scelta A"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // Link
         field.setBaseLink("destPage.html?name=");
@@ -162,7 +162,7 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_HIDDEN, "name", "testo"), FormControlWriter.writeHidden(field));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_HIDDEN, "name", "testo"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_HIDDEN, "name", "testo"), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -171,11 +171,11 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_LINK, "description", "www"), FormControlWriter.writeLink(link));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_LINK, "description", "www"), FormControlWriter.writeControl(link, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_LINK, "description", "www"), FormControlWriter.writeControl(link, null, ViewModality.EDIT, false));
 
         // Empty
         link.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(link, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(link, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -188,11 +188,11 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_RADIOGROUP_MOD, " checked=\"\""), FormControlWriter.writeRadioGroup(radioGroup, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_RADIOGROUP_MOD, ""), FormControlWriter.writeControl(radioGroup, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_RADIOGROUP_MOD, ""), FormControlWriter.writeControl(radioGroup, null, ViewModality.EDIT, false));
 
         // Empty
         radioGroup.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(radioGroup, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(radioGroup, null, ViewModality.EDIT, false));
     }
 
     @Test
@@ -208,14 +208,14 @@ class FormControlWriterTest {
         assertEquals(BASE_SEMAPHORE, FormControlWriter.writeSemaphore(semaphore, ViewModality.VIEW));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_SEMAPHORE, ""), FormControlWriter.writeControl(semaphore, null, ViewModality.VIEW, null));
+        assertEquals(MessageFormat.format(BASE_SEMAPHORE, ""), FormControlWriter.writeControl(semaphore, null, ViewModality.VIEW, false));
 
         // VIEW_MODIFICA ancora non gestita
-        assertEquals(BASE_SEMAPHORE_MOD, FormControlWriter.writeControl(semaphore, null, ViewModality.EDIT, null));
+        assertEquals(BASE_SEMAPHORE_MOD, FormControlWriter.writeControl(semaphore, null, ViewModality.EDIT, false));
 
         // Empty
         semaphore.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(semaphore, null, ViewModality.VIEW, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(semaphore, null, ViewModality.VIEW, false));
     }
 
     @Test
@@ -230,11 +230,11 @@ class FormControlWriterTest {
         assertEquals(MessageFormat.format(BASE_SWITCH_MOD, ""), FormControlWriter.writeSwitch(field, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(MessageFormat.format(BASE_SWITCH_MOD, ""), FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(MessageFormat.format(BASE_SWITCH_MOD, ""), FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // Empty
         field.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
 }

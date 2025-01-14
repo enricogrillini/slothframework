@@ -169,7 +169,7 @@ public class GridWriter extends HtmlWriter {
         if (ViewModality.VIEW == viewModality) {
             result.append(TextControlWriter.writeControl(field, grid));
         } else {
-            result.append(FormControlWriter.writeControl(field, grid, viewModality, null));
+            result.append(FormControlWriter.writeControl(field, grid, viewModality, false));
         }
 
         return result

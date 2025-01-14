@@ -61,11 +61,11 @@ class FormControlComboboxWriterTest {
         assertEquals(EDIT_TAG, FormControlWriter.writeComboBox(field, fields, ViewModality.EDIT));
 
         // Controllo generico
-        assertEquals(EDIT_TAG, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(EDIT_TAG, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
 
         // Empty
         field.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
 

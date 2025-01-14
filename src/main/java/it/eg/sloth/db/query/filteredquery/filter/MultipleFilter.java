@@ -1,5 +1,6 @@
 package it.eg.sloth.db.query.filteredquery.filter;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +22,7 @@ import java.sql.SQLException;
  *
  * @author Enrico Grillini
  */
-@Getter
-@Setter
+@Data
 public class MultipleFilter implements Filter {
 
     int sqlTypes;

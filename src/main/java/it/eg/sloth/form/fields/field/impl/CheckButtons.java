@@ -39,7 +39,15 @@ public class CheckButtons<L extends List<T>, T> extends CheckGroup<L, T> {
     }
 
     public void init(BaseDecodeMap<String> decodeMap) {
+        init(decodeMap, false);
+    }
+
+    public void init(BaseDecodeMap<String> decodeMap, boolean select) {
         setValues(StringUtil.join(decodeMap.codeCollection().toArray(new String[0]), CheckGroup.SEPARATOR));
         setDescriptions(StringUtil.join(decodeMap.descriptionCollection().toArray(new String[0]), CheckGroup.SEPARATOR));
+
+        if (select) {
+            setData(getValues());
+        }
     }
 }

@@ -41,13 +41,13 @@ class FormControlButtonTest extends AbstractTest {
     @Test
     void buttonBase() throws FrameworkException {
         assertEqualsStr("baseButton.html", FormControlWriter.writeButton(field));
-        assertEqualsStr("baseButton.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEqualsStr("baseButton.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     @Test
     void buttonHidden() throws FrameworkException {
         field.setHidden(true);
-        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEquals(StringUtil.EMPTY, FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 
     @Test

@@ -40,7 +40,10 @@ public class FormControlWriter extends HtmlWriter {
     public static final String DROPDOWN_ITEM = "  <a class=\"dropdown-item\" href=\"{2}?{3}={0}\">{1}</a>\n";
 
     public static final String INPUT = "<input id=\"{0}\" name=\"{0}\" type=\"{1}\" value=\"{2}\"{3}/>";
+
     public static final String INPUT_VIEW = "<div{1} style=\"height: auto;\">{0}</div>";
+
+    public static final String TEXT_AREA_VIEW = "<div{1}{2}>{0}</div>";
 
     public static final String FILE_GENERIC_VIEW = "<button{0} type=\"submit\" class=\"btn btn-link btn-sm\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Download file\"><i class=\"fas fa-download\"></i> Download</button>";
     public static final String FILE_GENERIC_VIEW_NOT_EXISTS = "<span class=\"btn btn-link btn-sm text-secondary\"><i class=\"fas fa-download\"></i> Non presente</span>";
@@ -52,9 +55,7 @@ public class FormControlWriter extends HtmlWriter {
     public static final String INPUT_GROUP_STATE_MESSAGE = "<div class=\"small {0}\">{1}</div>";
 
     // Scrive un Controllo
-    public static String writeControl(SimpleField element, Elements<?> parentElement, ViewModality pageViewModality, String controlClass) throws FrameworkException {
-        controlClass = BaseFunction.isBlank(controlClass) ? "" : " " + controlClass;
-
+    public static String writeControl(SimpleField element, Elements<?> parentElement, ViewModality pageViewModality, boolean overflow) throws FrameworkException {
         switch (element.getFieldType()) {
             case AUTO_COMPLETE:
                 return writeAutoComplete((AutoComplete) element, parentElement, pageViewModality);
@@ -97,7 +98,7 @@ public class FormControlWriter extends HtmlWriter {
             case TEXT:
                 return writeText((Text) element, parentElement);
             case TEXT_AREA:
-                return writeTextArea((TextArea) element, pageViewModality, controlClass);
+                return writeTextArea((TextArea) element, pageViewModality, overflow);
             case TEXT_TOTALIZER:
                 return writeTextTotalizer((TextTotalizer) element, parentElement);
             default:
@@ -756,7 +757,7 @@ public class FormControlWriter extends HtmlWriter {
     }
 
     // Scrive un campo: TextArea
-    public static String writeTextArea(TextArea<?> textArea, ViewModality pageViewModality, String controlClass) throws FrameworkException {
+    public static String writeTextArea(TextArea<?> textArea, ViewModality pageViewModality, boolean overflow) throws FrameworkException {
         if (textArea.isHidden()) {
             return StringUtil.EMPTY;
         }
@@ -765,16 +766,19 @@ public class FormControlWriter extends HtmlWriter {
         ViewModality viewModality = textArea.getViewModality() == ViewModality.AUTO ? pageViewModality : textArea.getViewModality();
         if (viewModality == ViewModality.VIEW) {
             return MessageFormat.format(
-                    INPUT_VIEW,
+                    TEXT_AREA_VIEW,
                     TextControlWriter.writeControlSpace(textArea, null),
-                    getAttribute(ATTR_CLASS, BootStrapClass.getViewControlClass(textArea) + controlClass)  + getTooltipAttributes(textArea.getTooltip()));
+                    getAttribute(ATTR_CLASS, BootStrapClass.getViewControlClass(textArea)) + getTooltipAttributes(textArea.getTooltip()),
+                    getAttribute(ATTR_STYLE, overflow ? "min-height: 100%; overflow-y: auto;" : "height: 100%;")
+            );
 
         } else {
             return new StringBuilder()
                     .append("<textarea")
                     .append(getAttribute(ATTR_ID, textArea.getName()))
                     .append(getAttribute(ATTR_NAME, textArea.getName()))
-                    .append(getAttribute(ATTR_CLASS, BootStrapClass.getControlClass(textArea) + controlClass))
+                    .append(getAttribute(ATTR_CLASS, BootStrapClass.getControlClass(textArea)))
+                    .append(getAttribute(ATTR_STYLE, overflow ? "min-height: 100%; overflow-y: auto;" : "min-height: 100%;"))
                     .append(getAttribute("rows", textArea.getRows().toString()))
                     .append(getAttribute(ATTR_READONLY, textArea.isReadOnly(), ""))
                     .append(getAttribute("maxlength", textArea.getMaxLength() > 0, "" + textArea.getMaxLength()))

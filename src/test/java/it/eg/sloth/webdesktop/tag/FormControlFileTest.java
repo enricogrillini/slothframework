@@ -38,19 +38,19 @@ class FormControlFileTest extends AbstractTest {
     @Test
     void baseView() throws FrameworkException {
         assertEqualsStr("baseView.html", FormControlWriter.writeFile(field, ViewModality.VIEW));
-        assertEqualsStr("baseView.html", FormControlWriter.writeControl(field, null, ViewModality.VIEW, null));
+        assertEqualsStr("baseView.html", FormControlWriter.writeControl(field, null, ViewModality.VIEW, false));
     }
 
     @Test
     void baseView_notExists() throws FrameworkException {
         field.setExists(false);
         assertEqualsStr("baseView_notExists.html", FormControlWriter.writeFile(field, ViewModality.VIEW));
-        assertEqualsStr("baseView_notExists.html", FormControlWriter.writeControl(field, null, ViewModality.VIEW, null));
+        assertEqualsStr("baseView_notExists.html", FormControlWriter.writeControl(field, null, ViewModality.VIEW, false));
     }
 
     @Test
     void baseEdit() throws FrameworkException {
         assertEqualsStr("baseEdit.html", FormControlWriter.writeFile(field, ViewModality.EDIT));
-        assertEqualsStr("baseEdit.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, null));
+        assertEqualsStr("baseEdit.html", FormControlWriter.writeControl(field, null, ViewModality.EDIT, false));
     }
 }

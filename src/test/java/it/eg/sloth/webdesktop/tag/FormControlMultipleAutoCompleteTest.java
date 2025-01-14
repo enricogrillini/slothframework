@@ -57,8 +57,8 @@ class FormControlMultipleAutoCompleteTest {
         assertEquals(VIEW_TAG, FormControlWriter.writeMultipleAutoComplete(multipleAutoComplete, fields, ViewModality.VIEW));
         assertEquals(EDIT_TAG, FormControlWriter.writeMultipleAutoComplete(multipleAutoComplete, fields, ViewModality.EDIT));
 
-        assertEquals(VIEW_TAG, FormControlWriter.writeControl(multipleAutoComplete, fields, ViewModality.VIEW, null));
-        assertEquals(EDIT_TAG, FormControlWriter.writeControl(multipleAutoComplete, fields, ViewModality.EDIT, null));
+        assertEquals(VIEW_TAG, FormControlWriter.writeControl(multipleAutoComplete, fields, ViewModality.VIEW, false));
+        assertEquals(EDIT_TAG, FormControlWriter.writeControl(multipleAutoComplete, fields, ViewModality.EDIT, false));
     }
 
 }

@@ -27,11 +27,11 @@ import java.io.IOException;
 @Setter
 public class ControlTag extends BaseElementTag<SimpleField> {
 
-    String controlClass;
+    boolean overflow;
 
     @Override
     protected int startTag() throws FrameworkException, IOException {
-        write(FormControlWriter.writeControl(getElement(), getParentElement(), getViewModality(), getControlClass()));
+        write(FormControlWriter.writeControl(getElement(), getParentElement(), getViewModality(), isOverflow()));
         return SKIP_BODY;
     }
 
